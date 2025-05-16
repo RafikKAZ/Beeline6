@@ -13,14 +13,14 @@ body {
     overflow-y: auto;
 }
 
-/* Заголовок — компактнее */
+/* Ещё более компактный заголовок */
 h1 {
     text-align: center;
-    font-size: 1.3rem;
-    margin: 10px 0;
+    font-size: 1rem;
+    margin: 8px 0;
     color: #000;
     background-color: #fff;
-    padding: 5px 10px;
+    padding: 4px 8px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     z-index: 1;
@@ -30,18 +30,18 @@ h1 {
     box-sizing: border-box;
 }
 
-/* Информационный блок — компактнее */
+/* Ещё меньший информационный блок */
 .info-text {
     max-width: 600px;
     width: 100%;
-    margin: 10px auto;
-    padding: 10px;
+    margin: 10px auto 8px;
+    padding: 8px;
     background-color: #f9f9f9;
     border: 1px solid #ccc;
     border-radius: 8px;
     text-align: center;
     color: #333;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
 }
 
 /* Контейнер формы — больше пространства */
@@ -49,8 +49,8 @@ form {
     flex: 1;
     width: 100%;
     max-width: 600px;
-    margin: 10px auto 50px;
-    padding: 30px;
+    margin: 15px auto 50px;
+    padding: 40px;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
@@ -78,10 +78,10 @@ input, select, button {
     margin-top: 10px;
 }
 
-/* Увеличенная карта */
+/* Ещё более высокая карта */
 #map {
     width: 100%;
-    height: 400px;
+    height: 500px;
     margin-bottom: 15px;
 }
 
@@ -103,50 +103,53 @@ button:hover {
 /* Адаптация для планшетов */
 @media (max-width: 768px) {
     h1 {
-        font-size: 1.1rem;
+        font-size: 0.9rem;
     }
 
     .info-text {
-        font-size: 0.85rem;
+        font-size: 0.75rem;
     }
 
     #map {
-        height: 350px;
+        height: 450px;
+    }
+
+    form {
+        width: 95%;
+        padding: 35px;
     }
 
     button {
         font-size: 0.9rem;
         padding: 8px;
     }
-
-    form, .info-text {
-        width: 90%;
-    }
 }
 
 /* Адаптация для мобильных */
 @media (max-width: 480px) {
     h1 {
-        font-size: 1rem;
-    }
-
-    .info-text {
         font-size: 0.8rem;
     }
 
+    .info-text {
+        font-size: 0.7rem;
+    }
+
     #map {
-        height: 300px;
+        height: 400px;
+    }
+
+    form {
+        width: 98%;
+        padding: 30px;
     }
 
     button {
         font-size: 0.8rem;
         padding: 6px;
     }
-
-    form, .info-text {
-        width: 95%;
-    }
 }
+
 
 
 body::after {
