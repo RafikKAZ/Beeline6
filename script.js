@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // Карта Яндекс
     let map, placemark;
 
-    // Центры городов
     const cityCenters = {
         "Алматы": [43.238949, 76.889709],
         "Астана": [51.169392, 71.449074],
@@ -37,7 +36,6 @@ document.addEventListener("DOMContentLoaded", function () {
         "Конаев": [43.854849, 77.061581],
     };
 
-    // Инициализация карты
     ymaps.ready(initMap);
 
     function initMap() {
@@ -58,11 +56,10 @@ document.addEventListener("DOMContentLoaded", function () {
             getAddress(coords);
         });
 
-        // Обработчик изменения города
         document.getElementById("city").addEventListener("change", function () {
             const selectedCity = this.value;
             if (cityCenters[selectedCity]) {
-                map.setCenter(cityCenters[selectedCity], 10); // Устанавливаем центр карты
+                map.setCenter(cityCenters[selectedCity], 10);
             }
         });
     }
@@ -78,23 +75,36 @@ document.addEventListener("DOMContentLoaded", function () {
         ymaps.geocode(coords).then(function (res) {
             const firstGeoObject = res.geoObjects.get(0);
             const address = firstGeoObject.getAddressLine();
+
             document.getElementById("address").value = address;
             document.getElementById("coordinates").value = coords.join(", ");
+
+            // Показываем адрес
+            const preview = document.getElementById("selected-address");
+            if (preview) {
+                preview.innerText = 'Выбранный адрес: ' + address;
+            }
+
+            // Всплывающее подтверждение
+            const confirmation = document.getElementById("confirmation");
+            if (confirmation) {
+                confirmation.classList.remove("hidden");
+                setTimeout(() => {
+                    confirmation.classList.add("hidden");
+                }, 3000);
+            }
         });
     }
 
-    // Отправка данных через форму
     document.getElementById("submissionForm").addEventListener("submit", async function (event) {
-        event.preventDefault(); // Останавливаем отправку для проверки данных
+        event.preventDefault();
 
-        // Получаем значения полей
         const address = document.getElementById("address").value.trim();
         const coordinates = document.getElementById("coordinates").value.trim();
 
-        // Проверяем, заполнены ли "Адрес дома" и "Координаты"
         if (address === "" || coordinates === "") {
-            alert("Пожалуйста, выберите дом на карте, кликая на дом и появлением синий метки.");
-            return; // Прерываем выполнение, если поля не заполнены
+            alert("Пожалуйста, укажите дом на карте.  .");
+            return;
         }
 
         const formData = new FormData(event.target);
@@ -107,21 +117,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const result = await response.text();
             alert(result);
-             resetForm();  // Очищаем форму после отправки
-            
+            resetForm();
+
         } catch (error) {
             console.error("Ошибка:", error);
             alert("Произошла ошибка при отправке данных.");
-          
         }
     });
 
- // Функция для очистки формы
     function resetForm() {
-        document.getElementById("submissionForm").reset();  // Сбрасывает значения формы
-        // Удаляем маркер с карты
+        document.getElementById("submissionForm").reset();
         if (placemark) {
             map.geoObjects.remove(placemark);
         }
+
+        // Сброс текста подтверждения и предпросмотра
+        const preview = document.getElementById("selected-address");
+        if (preview) preview.innerText = 'Адрес не выбран';
+
+        const confirmation = document.getElementById("confirmation");
+        if (confirmation) confirmation.classList.add("hidden");
     }
 });
