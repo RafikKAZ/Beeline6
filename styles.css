@@ -16,11 +16,11 @@ body {
 /* Ещё более компактный заголовок */
 h1 {
     text-align: center;
-    font-size: 2rem;
+    font-size: 1rem;
     margin: 8px 0;
     color: #000;
     background-color: #fff;
-    padding: 0;
+    padding: 4px 8px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     z-index: 1;
@@ -34,14 +34,14 @@ h1 {
 .info-text {
     max-width: 600px;
     width: 100%;
-    margin: 8px auto 7px;
-    padding: 0;
+    margin: 10px auto 8px;
+    padding: 8px;
     background-color: #f9f9f9;
     border: 1px solid #ccc;
     border-radius: 8px;
     text-align: center;
     color: #333;
-    font-size: 1rem;
+    font-size: 0.8rem;
 }
 
 /* Контейнер формы — больше пространства */
@@ -50,7 +50,7 @@ form {
     width: 100%;
     max-width: 600px;
     margin: 15px auto 50px;
-    padding: 10px;
+    padding: 40px;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
@@ -62,7 +62,7 @@ form {
 input, select, button {
     width: 100%;
     margin-bottom: 15px;
-    padding: 7px;
+    padding: 10px;
     font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -81,8 +81,33 @@ input, select, button {
 /* Ещё более высокая карта */
 #map {
     width: 100%;
-    height: 600px;
+    height: 500px;
     margin-bottom: 15px;
+}
+
+/* Предпросмотр выбранного адреса */
+.address-preview {
+    font-size: 0.9rem;
+    color: #0077cc;
+    margin: 8px 0;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Подтверждение */
+.confirmation {
+    font-size: 0.9rem;
+    color: #ffffff;
+    background-color: #4CAF50;
+    padding: 8px 12px;
+    margin-top: 10px;
+    text-align: center;
+    border-radius: 6px;
+    transition: opacity 0.3s ease;
+}
+
+.hidden {
+    display: none;
 }
 
 /* Кнопка отправки */
@@ -105,20 +130,16 @@ button:hover {
     h1 {
         font-size: 0.9rem;
     }
-
     .info-text {
         font-size: 0.75rem;
     }
-
     #map {
         height: 450px;
     }
-
     form {
         width: 95%;
         padding: 35px;
     }
-
     button {
         font-size: 0.9rem;
         padding: 8px;
@@ -130,42 +151,18 @@ button:hover {
     h1 {
         font-size: 0.8rem;
     }
-
     .info-text {
         font-size: 0.7rem;
     }
-
     #map {
         height: 400px;
     }
-
     form {
         width: 98%;
         padding: 30px;
     }
-
     button {
         font-size: 0.8rem;
         padding: 6px;
-    }
-}
-
-
-
-body::after {
-    content: "Мобильный стиль активен";
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    background: red;
-    color: white;
-    padding: 5px;
-    z-index: 9999;
-    display: none;
-}
-
-@media (max-width: 480px) {
-    body::after {
-        display: block;
     }
 }
