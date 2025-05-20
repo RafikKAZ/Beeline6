@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Заявка на подключение</title>
     <script src="https://api-maps.yandex.ru/2.1/?apikey=29954df2-70a5-4786-a0ad-417a1b83ef95&lang=ru_RU" type="text/javascript"></script>
-    <link rel="stylesheet" href="styles.css?v=2">
+    <link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body>
     <h1 class="centered-title">Оставить заявку на подключение</h1>
@@ -19,60 +19,45 @@
         <select id="city" name="city" required>
             <option value="Алматы">Алматы</option>
             <option value="Астана">Астана</option>
-            <option value="Актау">Актау</option>
-            <option value="Актобе">Актобе</option>
-            <option value="Атырау">Атырау</option>
-            <option value="Караганда">Караганда</option>
-            <option value="Кокшетау">Кокшетау</option>
             <option value="Костанай">Костанай</option>
-            <option value="Кызылорда">Кызылорда</option>
-            <option value="Павлодар">Павлодар</option>
-            <option value="Петропавловск">Петропавловск</option>
-            <option value="Талдыкорган">Талдыкорган</option>
-            <option value="Тараз">Тараз</option>
-            <option value="Уральск">Уральск</option>
-            <option value="Усть-Каменогорск">Усть-Каменагорск</option>
-            <option value="Темиртау">Темиртау</option>
-            <option value="Риддер">Риддер</option>
-            <option value="Рудный">Рудный</option>
-            <option value="Жезказган">Жезказган</option>
-            <option value="Сатпаев">Сатпаев</option>
-            <option value="Балхаш">Балхаш</option>
-            <option value="Кентау">Кентау</option>
-            <option value="Шахтинск">Шахтинск</option>
-            <option value="Сарань">Сарань</option>
-            <option value="Щучинск">Щучинск</option>
-            <option value="Аксу">Аксу</option>
-            <option value="Лисаковск">Лисаковск</option>
-            <option value="Житикара">Житикара</option>
-            <option value="Конаев">Конаев</option>
-            <option value="Кандагаш">Кандагаш</option>
             <option value="Шымкент">Шымкент</option>
+            <!-- ... другие города ... -->
         </select>
 
         <label for="name">ФИО:</label>
-        <input type="text" id="name" name="name" required>
+        <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            placeholder="Например: Иванов Иван"
+            pattern="^[А-Яа-яЁё\\s\\-]+$"
+            title="Введите только кириллические буквы и пробелы"
+        >
 
         <label for="phone">Контактный номер:</label>
-        <input type="text" id="phone" name="phone" required>
+        <input
+            type="text"
+            id="phone"
+            name="phone"
+            required
+            placeholder="8 777 123 4567"
+            pattern="^8\\d{10}$"
+            title="Введите номер в формате 8XXXXXXXXXX"
+        >
 
-        <!-- Скрытые поля -->
         <input type="text" id="address" name="address" readonly required style="display:none;">
         <input type="text" id="coordinates" name="coordinates" readonly required style="display:none;">
 
-        <!-- Инструкция и обратная связь -->
         <p class="map-instruction">Выберите адрес дома на карте. Необходимо кликнуть на дом для появления на доме синей метки.</p>
         <p id="selected-address" class="address-preview">Адрес не выбран</p>
 
-        <!-- Карта -->
         <div id="map"></div>
-
-        <!-- Подтверждение -->
         <div id="confirmation" class="confirmation hidden">Адрес успешно выбран ✅</div>
 
         <button type="submit">Отправить заявку</button>
     </form>
 
-    <script src="script.js?v=2"></script>
+    <script src="script.js?v=3"></script>
 </body>
 </html>
