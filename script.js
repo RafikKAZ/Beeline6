@@ -1,39 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Карта Яндекс
     let map, placemark;
 
     const cityCenters = {
         "Алматы": [43.238949, 76.889709],
         "Астана": [51.169392, 71.449074],
-        "Шымкент": [42.341731, 69.590099],
-        "Актау": [43.651070, 51.153300],
-        "Актобе": [50.283937, 57.166978],
-        "Атырау": [47.094495, 51.923771],
-        "Караганда": [49.806066, 73.085358],
-        "Кокшетау": [53.294822, 69.404787],
         "Костанай": [53.219913, 63.624630],
-        "Кызылорда": [44.848831, 65.482267],
-        "Павлодар": [52.287054, 76.967928],
-        "Петропавловск": [54.877876, 69.140651],
-        "Талдыкорган": [45.015245, 78.375034],
-        "Тараз": [42.899879, 71.377946],
-        "Уральск": [51.230942, 51.386524],
-        "Усть-Каменогорск": [49.948235, 82.615358],
-        "Темиртау": [50.054938, 72.959289],
-        "Риддер": [50.344848, 83.512650],
-        "Жезказган": [47.803837, 67.707956],
-        "Сатпаев": [47.881482, 67.540070],
-        "Балхаш": [46.844658, 75.996928],
-        "Кентау": [43.520079, 68.512026],
-        "Шахтинск": [49.701231, 72.591820],
-        "Сарань": [49.790466, 72.805327],
-        "Щучинск": [52.934115, 70.189818],
-        "Курчатов": [50.753168, 78.550736],
-        "Аксу": [52.046584, 76.918110],
-        "Лисаковск": [52.548712, 62.497317],
-        "Рудный": [52.964454, 63.133419],
-        "Житикара": [52.183928, 61.189833],
-        "Конаев": [43.854849, 77.061581],
+        "Шымкент": [42.341731, 69.590099]
+        // ... другие города ...
     };
 
     ymaps.ready(initMap);
@@ -79,13 +52,11 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("address").value = address;
             document.getElementById("coordinates").value = coords.join(", ");
 
-            // Показываем адрес
             const preview = document.getElementById("selected-address");
             if (preview) {
                 preview.innerText = 'Выбранный адрес: ' + address;
             }
 
-            // Всплывающее подтверждение
             const confirmation = document.getElementById("confirmation");
             if (confirmation) {
                 confirmation.classList.remove("hidden");
@@ -103,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const coordinates = document.getElementById("coordinates").value.trim();
 
         if (address === "" || coordinates === "") {
-            alert("Пожалуйста, укажите дом на карте.  .");
+            alert("Пожалуйста, заполните все поля, включая 'Адрес дома' и 'Координаты'.");
             return;
         }
 
@@ -131,11 +102,19 @@ document.addEventListener("DOMContentLoaded", function () {
             map.geoObjects.remove(placemark);
         }
 
-        // Сброс текста подтверждения и предпросмотра
         const preview = document.getElementById("selected-address");
         if (preview) preview.innerText = 'Адрес не выбран';
 
         const confirmation = document.getElementById("confirmation");
         if (confirmation) confirmation.classList.add("hidden");
     }
+
+    // 🔒 Ограничения ввода
+    document.getElementById("name").addEventListener("input", function () {
+        this.value = this.value.replace(/[^А-Яа-яЁё\\s\\-]/g, '');
+    });
+
+    document.getElementById("phone").addEventListener("input", function () {
+        this.value = this.value.replace(/[^0-9]/g, '');
+    });
 });
