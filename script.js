@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "Астана": [51.169392, 71.449074],
         "Костанай": [53.219913, 63.624630],
         "Шымкент": [42.341731, 69.590099]
-        // ... другие города ...
+        // ... добавь другие города при необходимости ...
     };
 
     ymaps.ready(initMap);
@@ -110,11 +110,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // 🔒 Ограничения ввода
+
+    // ФИО — только кириллические и казахские буквы, пробел и дефис
     document.getElementById("name").addEventListener("input", function () {
-        this.value = this.value.replace(/[^А-Яа-яЁё\\s\\-]/g, '');
+        this.value = this.value.replace(/[^А-Яа-яЁёӘәӨөҚқҢңҰұҮүҺһІі\s\-]/g, '');
     });
 
-    document.getElementById("phone").addEventListener("input", function () {
-        this.value = this.value.replace(/[^0-9]/g, '');
-    });
-});
+    // Телефон — только цифры
+    document.getElementById("phone").addEventListener
