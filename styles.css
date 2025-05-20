@@ -13,7 +13,7 @@ body {
     overflow-y: auto;
 }
 
-/* Ещё более компактный заголовок */
+/* Компактный заголовок */
 h1 {
     text-align: center;
     font-size: 1rem;
@@ -30,7 +30,7 @@ h1 {
     box-sizing: border-box;
 }
 
-/* Ещё меньший информационный блок */
+/* Информационный блок */
 .info-text {
     max-width: 600px;
     width: 100%;
@@ -44,7 +44,7 @@ h1 {
     font-size: 0.8rem;
 }
 
-/* Контейнер формы — больше пространства */
+/* Контейнер формы */
 form {
     flex: 1;
     width: 100%;
@@ -78,7 +78,7 @@ input, select, button {
     margin-top: 10px;
 }
 
-/* Ещё более высокая карта */
+/* Карта */
 #map {
     width: 100%;
     height: 500px;
