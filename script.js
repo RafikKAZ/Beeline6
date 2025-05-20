@@ -46,13 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         map.events.add("click", function (e) {
             const coords = e.get("coords");
-            if (placemark) {
-                placemark.geometry.setCoordinates(coords);
-            } else {
-                placemark = createPlacemark(coords);
-                map.geoObjects.add(placemark);
-            }
-            getAddress(coords);
+            setPlacemarkAndAddress(coords);
         });
 
         document.getElementById("city").addEventListener("change", function () {
@@ -61,6 +55,20 @@ document.addEventListener("DOMContentLoaded", function () {
                 map.setCenter(cityCenters[selectedCity], 10);
             }
         });
+
+        // 🌍 Геолокация пользователя
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                function (position) {
+                    const userCoords = [position.coords.latitude, position.coords.longitude];
+                    map.setCenter(userCoords, 16);
+                    setPlacemarkAndAddress(userCoords);
+                },
+                function (error) {
+                    console.warn("Геолокация не разрешена или не работает:", error.message);
+                }
+            );
+        }
     }
 
     function createPlacemark(coords) {
@@ -68,6 +76,16 @@ document.addEventListener("DOMContentLoaded", function () {
             preset: "islands#blueDotIcon",
             draggable: false
         });
+    }
+
+    function setPlacemarkAndAddress(coords) {
+        if (placemark) {
+            placemark.geometry.setCoordinates(coords);
+        } else {
+            placemark = createPlacemark(coords);
+            map.geoObjects.add(placemark);
+        }
+        getAddress(coords);
     }
 
     function getAddress(coords) {
@@ -126,6 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("submissionForm").reset();
         if (placemark) {
             map.geoObjects.remove(placemark);
+            placemark = null;
         }
 
         const preview = document.getElementById("selected-address");
