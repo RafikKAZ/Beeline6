@@ -166,3 +166,11 @@ button:hover {
         padding: 6px;
     }
 }
+
+.geo-hint {
+    font-size: 0.85rem;
+    color: #555;
+    text-align: center;
+    margin: 4px 10px 12px;
+    line-height: 1.4;
+}
