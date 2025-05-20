@@ -101,6 +101,19 @@ document.addEventListener("DOMContentLoaded", function () {
                 preview.innerText = 'Выбранный адрес: ' + address;
             }
 
+            const localities = firstGeoObject.getLocalities();
+            if (localities.length > 0) {
+                const detectedCity = localities[0].toLowerCase();
+                const citySelect = document.getElementById("city");
+                for (let i = 0; i < citySelect.options.length; i++) {
+                    const optionText = citySelect.options[i].text.toLowerCase();
+                    if (optionText.includes(detectedCity)) {
+                        citySelect.selectedIndex = i;
+                        break;
+                    }
+                }
+            }
+
             const confirmation = document.getElementById("confirmation");
             if (confirmation) {
                 confirmation.classList.remove("hidden");
@@ -118,7 +131,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const coordinates = document.getElementById("coordinates").value.trim();
 
         if (address === "" || coordinates === "") {
-            alert("Пожалуйста, заполните все поля, включая 'Адрес дома' и 'Координаты'.");
+            alert("Пожалуйста, выберите адрес дома на карте или включите геолокацию для автоматически выбора адреса.");
             return;
         }
 
@@ -154,14 +167,10 @@ document.addEventListener("DOMContentLoaded", function () {
         if (confirmation) confirmation.classList.add("hidden");
     }
 
-    // 🔒 Ограничения ввода
-
-    // ФИО — только кириллические и казахские буквы, пробел и дефис
     document.getElementById("name").addEventListener("input", function () {
         this.value = this.value.replace(/[^А-Яа-яЁёӘәӨөҚқҢңҰұҮүҺһІі\s\-]/g, '');
     });
 
-    // Телефон — только цифры
     document.getElementById("phone").addEventListener("input", function () {
         this.value = this.value.replace(/[^\d]/g, '');
     });
