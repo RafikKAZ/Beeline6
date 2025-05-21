@@ -56,8 +56,9 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
-        // 🌍 Геолокация
-        if (navigator.geolocation) {
+        // 🌍 Геолокация только на мобильных
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        if (isMobile && navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 function (position) {
                     const userCoords = [position.coords.latitude, position.coords.longitude];
@@ -65,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     setPlacemarkAndAddress(userCoords);
                 },
                 function (error) {
-                    console.warn("Геолокация не разрешена или недоступна:", error.message);
+                    console.warn("Геолокация недоступна:", error.message);
                 }
             );
         }
@@ -101,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 preview.innerText = 'Выбранный адрес: ' + address;
             }
 
-            // Установка города автоматически
+            // Автоматическое определение города
             const citySelect = document.getElementById("city");
             let detectedCity = firstGeoObject.getLocalities()[0];
             if (!detectedCity) {
