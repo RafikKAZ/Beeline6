@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Заявка на подключение</title>
   <script src="https://api-maps.yandex.ru/2.1/?apikey=29954df2-70a5-4786-a0ad-417a1b83ef95&lang=ru_RU"></script>
-  <link rel="stylesheet" href="styles.css?v=6" />
+  <link rel="stylesheet" href="styles.css?v=7" />
 </head>
 <body>
   <h1 class="centered-title">Оставить заявку на подключение</h1>
@@ -59,6 +59,13 @@
     <label for="phone">Контактный номер:</label>
     <input type="text" id="phone" name="phone" required placeholder="87001234567" pattern="8\d{10}" title="Введите номер из 11 цифр, начиная с 8 (например: 87001234567)" />
 
+    <label for="housing">Тип жилья:</label>
+    <select id="housing" name="housing" required>
+      <option value="">Выберите тип жилья</option>
+      <option value="Квартира">Квартира</option>
+      <option value="Частный дом">Частный дом</option>
+    </select>
+
     <input type="text" id="address" name="address" readonly required style="display: none" />
     <input type="text" id="coordinates" name="coordinates" readonly required style="display: none" />
     <input type="hidden" id="detected_city" name="detected_city" />
@@ -73,6 +80,6 @@
     <button type="submit">Отправить заявку</button>
   </form>
 
-  <script src="script.js?v=6"></script>
+  <script src="script.js?v=7"></script>
 </body>
 </html>
