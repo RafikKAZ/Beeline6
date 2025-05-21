@@ -153,41 +153,35 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         const formData = new FormData(event.target);
+        const submitBtn = document.querySelector("#submissionForm button[type='submit']");
+        if (submitBtn) submitBtn.disabled = true;
 
         try {
-            const response = await fetch("https://script.google.com/macros/s/AKfycbz991pKsrmTXf-i_vg9zbz-RtxfRMAMFw4J729FfL5xkFe4m0e6mi2H9GLKYCidVvxQwQ/exec", {
+            const response = await fetch("https://script.google.com/macros/s/AKfycbwXwKbErq1iK2XoWCh8R5EeyEs9IBYG7CA47Z-_J2UpvS6YB5GoJjaEK3x46OynLoqXiw/exec", {
                 method: "POST",
                 body: formData,
             });
 
             if (response.ok) {
-    alert("Спасибо за заявку! Мы рассмотрим её в ближайшие несколько рабочих дней.
-
-Если большинство жителей Вашего дома подадут заявки на подключение «Интернет Дома», мы сможем приоритизировать строительство сети по Вашему адресу.
-
-Спасибо за доверие!");
-
-    const submitBtn = document.querySelector("#submissionForm button[type='submit']");
-    if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.innerText = "Заявка отправлена";
-    }
-
-    resetForm();
-} else {
-    alert("Ошибка при отправке. Пожалуйста, попробуйте ещё раз позже.");
-}
+                alert("Спасибо за заявку! Мы рассмотрим её в ближайшие несколько рабочих дней.\n\nЕсли большинство жителей Вашего дома подадут заявки на подключение «Интернет Дома», мы сможем приоритизировать строительство сети по Вашему адресу.\n\nСпасибо за доверие!");
+                if (submitBtn) {
+                    submitBtn.disabled = true;
+                    submitBtn.innerText = "Заявка отправлена";
+                }
+                resetForm(false);
             } else {
                 alert("Ошибка при отправке. Пожалуйста, попробуйте ещё раз позже.");
+                if (submitBtn) submitBtn.disabled = false;
             }
 
         } catch (error) {
             console.error("Ошибка:", error);
             alert("Произошла ошибка при отправке данных.");
+            if (submitBtn) submitBtn.disabled = false;
         }
     });
 
-    function resetForm() {
+    function resetForm(preserveDisable = true) {
         document.getElementById("submissionForm").reset();
         if (placemark) {
             map.geoObjects.remove(placemark);
@@ -199,10 +193,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const confirmation = document.getElementById("confirmation");
         if (confirmation) confirmation.classList.add("hidden");
+
+        if (!preserveDisable) {
+            const submitBtn = document.querySelector("#submissionForm button[type='submit']");
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.innerText = "Отправить заявку";
+            }
+        }
     }
 
     document.getElementById("name").addEventListener("input", function () {
-        this.value = this.value.replace(/[^А-Яа-яЁёӘәӨөҚқҢңҰұҮүҺһІі\s\-]/g, '');
+        this.value = this.value.replace(/[^А-Яа-яЁёӘәӨөҚқҢңҰұҮүҺһІі\\s\\-]/g, '');
     });
 
     document.getElementById("phone").addEventListener("input", function () {
