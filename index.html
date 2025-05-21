@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Заявка на подключение</title>
   <script src="https://api-maps.yandex.ru/2.1/?apikey=29954df2-70a5-4786-a0ad-417a1b83ef95&lang=ru_RU"></script>
-  <link rel="stylesheet" href="styles.css?v=4" />
+  <link rel="stylesheet" href="styles.css?v=5" />
 </head>
 <body>
   <h1 class="centered-title">Оставить заявку на подключение</h1>
@@ -21,6 +21,7 @@
   <form id="submissionForm">
     <label for="city">Город:</label>
     <select id="city" name="city" required>
+      <!-- все города — как ранее перечисляли -->
       <option value="Алматы">Алматы</option>
       <option value="Астана">Астана</option>
       <option value="Костанай">Костанай</option>
@@ -71,36 +72,24 @@
       id="phone"
       name="phone"
       required
-      placeholder="8 777 123 4567"
-      pattern="^8\\d{10}$"
-      title="Введите номер в формате 8XXXXXXXXXX"
+      placeholder="87001234567"
+      pattern="8\\d{10}"
+      title="Введите номер из 11 цифр, начиная с 8 (например: 87001234567)"
     />
 
-    <!-- Скрытые поля -->
     <input type="text" id="address" name="address" readonly required style="display: none" />
     <input type="text" id="coordinates" name="coordinates" readonly required style="display: none" />
 
-    <!-- Инструкция -->
     <p class="map-instruction">Выберите адрес дома на карте. Необходимо кликнуть на дом для появления синей метки.</p>
-
-    <!-- Подсказка про геолокацию -->
-    <p class="geo-hint">
-      📍 Вы можете включить геолокацию на устройстве — карта автоматически покажет ваше местоположение, а адрес и координаты заполнятся.
-    </p>
-
-    <!-- Выбранный адрес -->
+    <p class="geo-hint">📍 Вы можете включить геолокацию — карта покажет ваше местоположение, а адрес заполнится автоматически.</p>
     <p id="selected-address" class="address-preview">Адрес не выбран</p>
 
-    <!-- Карта -->
     <div id="map"></div>
-
-    <!-- Всплывающее подтверждение -->
     <div id="confirmation" class="confirmation hidden">Адрес успешно выбран ✅</div>
 
-    <!-- Кнопка -->
     <button type="submit">Отправить заявку</button>
   </form>
 
-  <script src="script.js?v=4"></script>
+  <script src="script.js?v=5"></script>
 </body>
 </html>
