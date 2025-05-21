@@ -148,21 +148,38 @@ document.addEventListener("DOMContentLoaded", function () {
         const coordinates = document.getElementById("coordinates").value.trim();
 
         if (address === "" || coordinates === "") {
-            alert("Пожалуйста, выберите адрес дома на карте или включите геолокацию для автоматически выбора адреса.");
+            alert("Пожалуйста, выберите адрес дома на карте или включите геолокацию для автоматического выбора адреса.");
             return;
         }
 
         const formData = new FormData(event.target);
 
         try {
-            const response = await fetch("https://script.google.com/macros/s/AKfycbzfH-K4MD5bICKlNTQ3IS47v7eaZdc4xZQhJlPW5VrNZCwtbY0eMa6DL-CTmJNvzUE/exec", {
+            const response = await fetch("https://script.google.com/macros/s/AKfycbwXwKbErq1iK2XoWCh8R5EeyEs9IBYG7CA47Z-_J2UpvS6YB5GoJjaEK3x46OynLoqXiw/exec", {
                 method: "POST",
                 body: formData,
             });
 
-            const result = await response.text();
-            alert(result);
-            resetForm();
+            if (response.ok) {
+    alert("Спасибо за заявку! Мы рассмотрим её в ближайшие несколько рабочих дней.
+
+Если большинство жителей Вашего дома подадут заявки на подключение «Интернет Дома», мы сможем приоритизировать строительство сети по Вашему адресу.
+
+Спасибо за доверие!");
+
+    const submitBtn = document.querySelector("#submissionForm button[type='submit']");
+    if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerText = "Заявка отправлена";
+    }
+
+    resetForm();
+} else {
+    alert("Ошибка при отправке. Пожалуйста, попробуйте ещё раз позже.");
+}
+            } else {
+                alert("Ошибка при отправке. Пожалуйста, попробуйте ещё раз позже.");
+            }
 
         } catch (error) {
             console.error("Ошибка:", error);
@@ -185,7 +202,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     document.getElementById("name").addEventListener("input", function () {
-        this.value = this.value.replace(/[^А-Яа-яЁёӘәӨөҚқҢңҰұҮүҺһІі\\s\\-]/g, '');
+        this.value = this.value.replace(/[^А-Яа-яЁёӘәӨөҚқҢңҰұҮүҺһІі\s\-]/g, '');
     });
 
     document.getElementById("phone").addEventListener("input", function () {
