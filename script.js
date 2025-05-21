@@ -109,16 +109,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (detectedCity) {
                 const detected = detectedCity.toLowerCase();
+                let matched = false;
                 for (let i = 0; i < citySelect.options.length; i++) {
                     const optionText = citySelect.options[i].text.toLowerCase();
                     if (optionText.includes(detected)) {
                         citySelect.selectedIndex = i;
+                        matched = true;
                         break;
                     }
                 }
+
                 const detectedCityInput = document.getElementById("detected_city");
                 if (detectedCityInput) {
                     detectedCityInput.value = detectedCity;
+                }
+
+                if (!matched) {
+                    const customOption = new Option(detectedCity, detectedCity, true, true);
+                    citySelect.add(customOption, 0);
+                    citySelect.selectedIndex = 0;
                 }
             }
 
@@ -176,7 +185,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     document.getElementById("name").addEventListener("input", function () {
-        this.value = this.value.replace(/[^А-Яа-яЁёӘәӨөҚқҢңҰұҮүҺһІі\s\-]/g, '');
+        this.value = this.value.replace(/[^А-Яа-яЁёӘәӨөҚқҢңҰұҮүҺһІі\\s\\-]/g, '');
     });
 
     document.getElementById("phone").addEventListener("input", function () {
