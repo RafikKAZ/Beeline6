@@ -56,7 +56,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
-        // 🌍 Геолокация только на мобильных
         const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
         if (isMobile && navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
@@ -102,7 +101,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 preview.innerText = 'Выбранный адрес: ' + address;
             }
 
-            // Автоматическое определение города
             const citySelect = document.getElementById("city");
             let detectedCity = firstGeoObject.getLocalities()[0];
             if (!detectedCity) {
@@ -117,6 +115,10 @@ document.addEventListener("DOMContentLoaded", function () {
                         citySelect.selectedIndex = i;
                         break;
                     }
+                }
+                const detectedCityInput = document.getElementById("detected_city");
+                if (detectedCityInput) {
+                    detectedCityInput.value = detectedCity;
                 }
             }
 
@@ -173,7 +175,6 @@ document.addEventListener("DOMContentLoaded", function () {
         if (confirmation) confirmation.classList.add("hidden");
     }
 
-    // Ограничения на ввод
     document.getElementById("name").addEventListener("input", function () {
         this.value = this.value.replace(/[^А-Яа-яЁёӘәӨөҚқҢңҰұҮүҺһІі\s\-]/g, '');
     });
