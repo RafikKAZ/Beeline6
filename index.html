@@ -5,11 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Заявка на подключение</title>
   <script src="https://api-maps.yandex.ru/2.1/?apikey=29954df2-70a5-4786-a0ad-417a1b83ef95&lang=ru_RU"></script>
-  <link rel="stylesheet" href="styles.css?v=5" />
+  <link rel="stylesheet" href="styles.css?v=6" />
 </head>
 <body>
   <h1 class="centered-title">Оставить заявку на подключение</h1>
-
   <div class="info-text">
     <p>
       Если Вашего дома нет в списке, значит Вам сейчас нельзя подключить наш
@@ -21,7 +20,6 @@
   <form id="submissionForm">
     <label for="city">Город:</label>
     <select id="city" name="city" required>
-      <!-- все города — как ранее перечисляли -->
       <option value="Алматы">Алматы</option>
       <option value="Астана">Астана</option>
       <option value="Костанай">Костанай</option>
@@ -56,29 +54,14 @@
     </select>
 
     <label for="name">ФИО:</label>
-    <input
-      type="text"
-      id="name"
-      name="name"
-      required
-      placeholder="Например: Иванов Айдар"
-      pattern="^[А-Яа-яЁёӘәӨөҚқҢңҰұҮүҺһІі\\s\\-]+$"
-      title="Только буквы, пробелы и дефис"
-    />
+    <input type="text" id="name" name="name" required placeholder="Например: Иванов Айдар" pattern="^[А-Яа-яЁёӘәӨөҚқҢңҰұҮүҺһІі\s\-]+$" title="Только буквы, пробелы и дефис"/>
 
     <label for="phone">Контактный номер:</label>
-    <input
-      type="text"
-      id="phone"
-      name="phone"
-      required
-      placeholder="87001234567"
-      pattern="8\d{10}"
-      title="Введите номер из 11 цифр, начиная с 8 (например: 87001234567)"
-    />
+    <input type="text" id="phone" name="phone" required placeholder="87001234567" pattern="8\d{10}" title="Введите номер из 11 цифр, начиная с 8 (например: 87001234567)" />
 
     <input type="text" id="address" name="address" readonly required style="display: none" />
     <input type="text" id="coordinates" name="coordinates" readonly required style="display: none" />
+    <input type="hidden" id="detected_city" name="detected_city" />
 
     <p class="map-instruction">Выберите адрес дома на карте. Необходимо кликнуть на дом для появления синей метки.</p>
     <p class="geo-hint">📍 Вы можете включить геолокацию — карта покажет ваше местоположение, а адрес заполнится автоматически.</p>
@@ -90,6 +73,6 @@
     <button type="submit">Отправить заявку</button>
   </form>
 
-  <script src="script.js?v=5"></script>
+  <script src="script.js?v=6"></script>
 </body>
 </html>
