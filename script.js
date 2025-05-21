@@ -155,7 +155,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const formData = new FormData(event.target);
 
         try {
-            const response = await fetch("https://script.google.com/macros/s/AKfycbwAj5jmO20rc5_0ZjvgaVlBUc2pmnNFbh4NdhjIvknYZR_ByQI_QI2aNBjLPWhrkn1Ltg/exec", {
+            const response = await fetch("https://script.google.com/macros/s/AKfycbwXwKbErq1iK2XoWCh8R5EeyEs9IBYG7CA47Z-_J2UpvS6YB5GoJjaEK3x46OynLoqXiw/exec", {
                 method: "POST",
                 body: formData,
             });
