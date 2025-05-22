@@ -77,7 +77,6 @@ document.addEventListener("DOMContentLoaded", function () {
             draggable: false
         });
     }
-
     function setPlacemarkAndAddress(coords) {
         if (placemark) {
             placemark.geometry.setCoordinates(coords);
@@ -102,10 +101,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             const citySelect = document.getElementById("city");
-            let detectedCity = firstGeoObject.getLocalities()[0];
-            if (!detectedCity) {
-                detectedCity = firstGeoObject.getAdministrativeAreas()[0];
-            }
+            let detectedCity = firstGeoObject.getLocalities()[0] || firstGeoObject.getAdministrativeAreas()[0];
 
             if (detectedCity) {
                 const detected = detectedCity.toLowerCase();
@@ -134,9 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const confirmation = document.getElementById("confirmation");
             if (confirmation) {
                 confirmation.classList.remove("hidden");
-                setTimeout(() => {
-                    confirmation.classList.add("hidden");
-                }, 3000);
+                setTimeout(() => confirmation.classList.add("hidden"), 3000);
             }
         });
     }
@@ -146,14 +140,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const address = document.getElementById("address").value.trim();
         const coordinates = document.getElementById("coordinates").value.trim();
+        const submitBtn = document.querySelector("#submissionForm button[type='submit']");
 
         if (address === "" || coordinates === "") {
-            alert("Пожалуйста, выберите адрес дома на карте или включите геолокацию для автоматического выбора адреса.");
+            alert("Пожалуйста, выберите адрес дома на карте или включите геолокацию.");
             return;
         }
 
         const formData = new FormData(event.target);
-        const submitBtn = document.querySelector("#submissionForm button[type='submit']");
         if (submitBtn) submitBtn.disabled = true;
 
         try {
@@ -169,10 +163,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     submitBtn.innerText = "Заявка отправлена";
                 }
                 resetForm(false);
-            } else {
-                alert("Ошибка при отправке. Пожалуйста, попробуйте ещё раз позже.");
-                if (submitBtn) submitBtn.disabled = false;
+                return;
             }
+
+            alert("Ошибка при отправке. Пожалуйста, попробуйте ещё раз позже.");
+            if (submitBtn) submitBtn.disabled = false;
 
         } catch (error) {
             console.error("Ошибка:", error);
