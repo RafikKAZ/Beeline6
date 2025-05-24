@@ -199,7 +199,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     document.getElementById("name").addEventListener("input", function () {
-        this.value = this.value.replace(/[^А-Яа-яЁёӘәӨөҚқҢңҰұҮүҺһІі\\s\\-]/g, '');
+        this.value = this.value.replace(/[^А-Яа-яЁёӘәӨөҚқҢңҰұҮүҺһІі\s\-]/g, '');
     });
 
     document.getElementById("phone").addEventListener("input", function () {
