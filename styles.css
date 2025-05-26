@@ -16,7 +16,7 @@ body {
 /* Компактный заголовок */
 h1 {
     text-align: center;
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin: 8px 0;
     color: #000;
     background-color: #fff;
@@ -35,13 +35,13 @@ h1 {
     max-width: 600px;
     width: 100%;
     margin: 10px auto 8px;
-    padding: 8px;
+    padding: 7px;
     background-color: #f9f9f9;
     border: 1px solid #ccc;
     border-radius: 8px;
     text-align: center;
     color: #333;
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 
 /* Контейнер формы */
