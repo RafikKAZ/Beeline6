@@ -131,7 +131,7 @@ button:hover {
         font-size: 0.9rem;
     }
     .info-text {
-        font-size: 0.75rem;
+        font-size: 0.8rem;
     }
     #map {
         height: 450px;
@@ -149,10 +149,10 @@ button:hover {
 /* Адаптация для мобильных */
 @media (max-width: 480px) {
     h1 {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
     }
     .info-text {
-        font-size: 0.7rem;
+        font-size: 0.8rem;
     }
     #map {
         height: 400px;
