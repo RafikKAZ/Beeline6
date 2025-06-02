@@ -172,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (submitBtn) submitBtn.disabled = true;
 
         try {
-            const response = await fetch("https://script.google.com/macros/s/AKfycbxdQqrYYIIUJvYeDtCsQj_OkUwfX4kXeimfV7znBEHFtAsC-MOcgS_NnG7-D_91ukh5bA/exec", {
+            const response = await fetch("https://script.google.com/macros/s/AKfycbyvGVEFMym5wPSWUHnfhl_KN_oDnhsgvmRGSohGK1CmUF8JeHkNl_Pd8HLuglQSlSpa/exec", {
                 method: "POST",
                 body: formData,
             });
