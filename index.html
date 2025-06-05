@@ -78,7 +78,7 @@
     <input type="text" id="name" name="name" required placeholder="Например: Иванов Айдар" pattern="^[А-Яа-яЁёӘәӨөҚқҢңҰұҮүҺһІі\s\-]+$" title="Только буквы, пробелы и дефис"/>
 
     <label for="phone">Контактный номер:</label>
-    <input type="text" id="phone" name="phone" required placeholder="Например: 87771234567" pattern="8\d{10}" maxlength="50" title="Введите номер из 11 цифр, начиная с 8 (например: 87771234567)" />
+    <input type="text" maxlength="50" id="phone" name="phone" required placeholder="Например: 87771234567" pattern="8\d{10}" title="Введите номер из 11 цифр, начиная с 8 (например: 87771234567)" />
 
     <label for="housing">Тип жилья:</label>
     <select id="housing" name="housing" required>
@@ -96,7 +96,7 @@
     <p id="selected-address" class="address-preview">Адрес не выбран</p>
 
     <div id="map"></div>
-    <div id="confirmation" class="confirmation">Адрес успешно выбран ✅</div>
+    <div id="confirmation" class="confirmation hidden">Адрес успешно выбран ✅</div>
 
     <button type="submit">Отправить заявку</button>
   </form>
